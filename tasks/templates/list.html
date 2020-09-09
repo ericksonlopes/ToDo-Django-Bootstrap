@@ -1,22 +1,23 @@
-<h1>To App Django</h1>
+{% extends 'layout.html' %}
+{% load bootstrap %}
 
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit">
-</form>
+{% block content %}
+    <div class="container">
+        <h1>To App Django</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <input type="submit">
+        </form>
 
-{% for content in tasks %}
-<p>{{ content.content }}</p>
-<p>{{ content.created_at }}</p>
-<a href="{% url 'delete' content.id %}">deletar</a>
-<!--<form action="../tasks/delete/{{content.id}}/" method="post">-->
-<!--{% csrf_token %}-->
-<!--    <button type="submit">Deletar</button>-->
-<!--</form>-->
-
-<br>
-<br>
-{% endfor %}
+        {% for content in tasks %}
+            <p>{{ content.content }}</p>
+            <p>{{ content.created_at }}</p>
+            <a href="{% url 'delete' content.id %}">deletar</a>
+            <br>
+            <br>
+        {% endfor %}
+    </div>
+{% endblock %}
 
 
