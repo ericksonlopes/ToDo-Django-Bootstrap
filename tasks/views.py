@@ -4,8 +4,6 @@ from tasks.forms import ContentForm
 from tasks.models import TasksDB
 
 
-
-
 def index(request):
     content = TasksDB.objects.all()
     context = {
@@ -17,6 +15,7 @@ def index(request):
         if form.is_valid():
             form.save()
             return render(request, 'list.html', context)
+
     return render(request, 'list.html', context)
 
 

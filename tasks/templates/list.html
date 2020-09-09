@@ -1,21 +1,38 @@
 {% extends 'layout.html' %}
 {% load bootstrap %}
 
+{% block estilo %}
+        <style>
+            body{
+                background-color: #FFD700;
+            }
+            .card{
+                box-shadow: 10px 10px ;
+            }
+            .card-text{
+                 font-size: 20px;
+            }
+
+        </style>
+{% endblock %}
+
 {% block content %}
+
     <div class="container">
-        <h1>To App Django</h1>
-        <form action="" method="post">
+        <h1 class="text-center">To App Django</h1>
+        <form method="post" class="">
             {% csrf_token %}
             {{ form|bootstrap }}
-            <input type="submit">
+            <input type="submit" class="alert alert-success">
         </form>
-
         {% for content in tasks %}
-            <p>{{ content.content }}</p>
-            <p>{{ content.created_at }}</p>
-            <a href="{% url 'delete' content.id %}">deletar</a>
-            <br>
-            <br>
+            <div class="card mt-5">
+                <h6 class="card-header">Tarefa | {{ content.created_at }}</h6>
+                <div class="card-body">
+                    <p class="card-text text-denter">{{ content.content }}</p>
+                </div>
+                <p class="card-footer"><a href="{% url 'delete' content.id %}" class="alert alert-danger">deletar</a></p>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}
